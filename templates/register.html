@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Add your head content here -->
+  </head>
+  <body>
+    <h2>Register</h2>
+    <form method="POST" action="{{ url_for('register') }}">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+
+      <label for="role">Role:</label>
+      <select id="role" name="role" required>
+        <option value="student">Student</option>
+        <option value="professor">Professor</option>
+      </select>
+
+      <input type="submit" value="Register" />
+    </form>
+    <p>
+      Already have an account? <a href="{{ url_for('login') }}">Login here</a>.
+    </p>
+  </body>
+</html>

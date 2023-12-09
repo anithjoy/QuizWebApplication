@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Quiz</title>
+  </head>
+  <body>
+    <h1>Create a Quiz</h1>
+    <form action="/addQuiz" method="post">
+      <label for="quiz_title">Quiz Title:</label>
+      <input type="text" name="quiz_title" required />
+      <br />
+
+      <!-- Add questions and options fields dynamically -->
+      <div id="questions-container"></div>
+
+      <button type="button" onclick="addQuestion()">Add Question</button>
+      <br />
+      <button type="submit">Create Quiz</button>
+    </form>
+
+    <script>
+      function addQuestion() {
+        const container = document.getElementById("questions-container");
+        const questionNumber = container.childElementCount + 1;
+
+        const newQuestion = document.createElement("div");
+        newQuestion.className = "question";
+
+        newQuestion.innerHTML = `
+                <label for="question${questionNumber}">Question ${questionNumber}:</label>
+                <input type="text" name="question${questionNumber}" required />
+                <br />
+                <label for="options${questionNumber}">Options (comma-separated):</label>
+                <input type="text" name="options${questionNumber}" required />
+                <br />
+                <label for="correct_option${questionNumber}">Correct Option:</label>
+                <input type="text" name="correct_option${questionNumber}" required />
+            `;
+
+        container.appendChild(newQuestion);
+      }
+    </script>
+  </body>
+</html>

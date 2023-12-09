@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ quiz['title'] }} Quiz</title>
+  </head>
+  <body>
+    <h1>{{ quiz['title'] }} Quiz</h1>
+    <form
+      action="{{ url_for('submit_quiz', quiz_id=quiz['_id']) }}"
+      method="post"
+    >
+      {% for question in quiz['questions'] %}
+      <p>{{ question['question'] }}</p>
+      <ul>
+        {% for option in question['options'] %}
+        <li>
+          <label>
+            <input
+              type="radio"
+              name="{{ question['question'] }}"
+              value="{{ option }}"
+              required
+            />
+            {{ option }}
+          </label>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endfor %}
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </body>
+</html>
